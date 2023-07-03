@@ -20,7 +20,13 @@ Examples:
     hasAZero(1212121) // false
 */
 
-function hasAZero(num) {}
+function hasAZero(num) {
+  let str = num.toString();
+  let arr = str.split("");
+  return arr.some(function (val) {
+    return val === "0";
+  });
+}
 
 /*
 Write a function called hasOnlyOddNumbers which accepts an array and returns true if every single number in the array is odd. If any of the values in the array are not odd, the function should return false. 
@@ -30,7 +36,11 @@ Examples:
     hasOnlyOddNumbers([1,2,3,5,7]) // false
 */
 
-function hasOnlyOddNumbers(arr) {}
+function hasOnlyOddNumbers(arr) {
+  return arr.every(function (val) {
+    return val % 2 === 1;
+  });
+}
 
 /*
 Write a function called hasNoDuplicates which accepts an array and returns true if there are no duplicate values (more than one element in the array that has the same value as another). If there are any duplicates, the function should return false.
@@ -40,7 +50,17 @@ Examples:
     hasNoDuplicates([1,2,3]) // true
 */
 
-function hasNoDuplicates(arr) {}
+function hasNoDuplicates(arr) {
+  // for each item in the array
+  return arr.every(function (val) {
+    // find index of item in the arrray
+    i = arr.indexOf(val);
+    // remove that item from the array
+    arr.splice(i, 1);
+    // check for that item in the remaining array
+    return !arr.includes(val);
+  });
+}
 
 /*
 Write a function called hasCertainKey which accepts an array of objects and a key, and returns true if every single object in the array contains that key. Otherwise it should return false.
@@ -57,8 +77,11 @@ Examples:
     hasCertainKey(arr,'isCatOwner') // false
 */
 
-function hasCertainKey(arr, key) {}
-
+function hasCertainKey(arr, key) {
+  return arr.every(function (obj) {
+    return obj.hasOwnProperty(key);
+  });
+}
 /*
 Write a function called hasCertainValue which accepts an array of objects and a key, and a value, and returns true if every single object in the array contains that value for the specific key. Otherwise it should return false.
 
@@ -75,4 +98,8 @@ Examples:
     
 */
 
-function hasCertainValue(arr, key, searchValue) {}
+function hasCertainValue(arr, key, searchValue) {
+  return arr.every(function (obj) {
+    return obj.hasOwnProperty(key) && obj[key] === searchValue;
+  });
+}
